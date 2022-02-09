@@ -108,38 +108,6 @@ public class Registro extends AppCompatActivity {
 
     }
 /*
-    //Metodo para consultar un artículo o producto
-    public void buscar(View view){
-
-
-    }
-
-    //Metodo para eliminar una nota
-    public void eliminar(View view){
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "administracion", null, 1);
-        SQLiteDatabase BaseDeDatos=admin.getWritableDatabase();
-
-        String codigo=et_codigo.getText().toString();
-
-        if(!codigo.isEmpty()){
-            int cantidad=BaseDeDatos.delete("articulos","codigo="+codigo, null);
-            BaseDeDatos.close();
-
-            et_codigo.setText("");
-            et_descripcion.setText("");
-            et_precio.setText("");
-
-            if(cantidad==1){
-                Toast.makeText(this, "Artículo eliminado", Toast.LENGTH_SHORT).show();
-            }else{
-                Toast.makeText(this, "El artículo no existe", Toast.LENGTH_SHORT).show();
-            }
-
-        }else{
-            Toast.makeText(this, "Debes introducir el código del artículo", Toast.LENGTH_SHORT).show();
-        }
-    }
-
     //Metodo para modificar un producto o artículo
     public void modificar(View view){
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "administracion", null, 1);

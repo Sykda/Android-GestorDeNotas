@@ -26,7 +26,7 @@ public class ListViewAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return titulos.size();
+        return 0;
     }
 
     @Override
