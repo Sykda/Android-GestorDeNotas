@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Gestor De Notas</string>
+    <string name="confirm">confirm</string>
+    <string name="remove">remove</string>
 </resources>

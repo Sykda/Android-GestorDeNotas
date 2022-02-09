@@ -14,19 +14,19 @@ public class ListViewAdapter extends BaseAdapter {
 
     // Variables
     Context context;
-    ArrayList<String> titulos;
+    ArrayList<String> tareas;
     int[] imagenes;
     LayoutInflater inflater;
 
-    public ListViewAdapter(Context context, ArrayList<String> titulos, int[] imagenes) {
+    public ListViewAdapter(Context context, ArrayList<String> tareas, int[] imagenes) {
         this.context = context;
-        this.titulos = titulos;
+        this.tareas = tareas;
         this.imagenes = imagenes;
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return tareas.size();
     }
 
     @Override
@@ -43,10 +43,9 @@ public class ListViewAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         //Variables de texto e imagen
-        TextView txtTitle;
+        TextView categoria;
+        TextView titulo;
         TextView descripcion;
-        TextView descripcion1;
-        TextView descripcion2;
         ImageView imgImg;
 
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -54,20 +53,20 @@ public class ListViewAdapter extends BaseAdapter {
         View itemView = inflater.inflate(R.layout.vista_listview, parent, false);
 
         // Localizamos los TextViews en el listview_item.xml
-        txtTitle = (TextView) itemView.findViewById(R.id.list_row_title);
-        descripcion = (TextView) itemView.findViewById(R.id.list_row_description);
-        descripcion1 = (TextView) itemView.findViewById(R.id.list_row_description1);
-        descripcion2 = (TextView) itemView.findViewById(R.id.list_row_description2);
+        categoria = (TextView) itemView.findViewById(R.id.list_row_categoria);
+        titulo = (TextView) itemView.findViewById(R.id.list_row_titulo);
+        descripcion = (TextView) itemView.findViewById(R.id.list_row_descripcion);
+
 
         imgImg = (ImageView) itemView.findViewById(R.id.list_row_image);
 
         // Captura la posicion y seteamos los textView
-        txtTitle.setText(titulos.get(position).split(",")[1]);
-        descripcion.setText(titulos.get(position).split(",")[2]);
-        descripcion1.setText(titulos.get(position).split(",")[3] + " cm");
-        descripcion2.setText(titulos.get(position).split(",")[4]);
+        categoria.setText(tareas.get(position).split(",")[0]);
+        titulo.setText(tareas.get(position).split(",")[1]);
+        descripcion.setText(tareas.get(position).split(",")[2]);
 
-        imgImg.setImageResource(imagenes[position]);
+
+//        imgImg.setImageResource(imagenes[position]);
 
         return itemView;
     }

@@ -3,80 +3,62 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
 
-    android:orientation="horizontal"
-    android:padding="30dp" >
+    android:orientation="horizontal">
 
     <!--  listrow  -->
     <LinearLayout android:id="@+id/thumbnail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="3dip"
         android:layout_alignParentLeft="true"
-
         android:layout_marginRight="5dip">
 
         <ImageView
             android:id="@+id/list_row_image"
-            android:layout_width="150dip"
-            android:layout_height="150dip"
-            android:src="@drawable/ic_launcher"/>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_launcher" />
 
     </LinearLayout>
 
     <!-- titulo de la categoria -->
 
     <TextView
-        android:id="@+id/list_row_title"
-        android:layout_width="fill_parent"
+        android:id="@+id/list_row_categoria"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="26dp"
         android:layout_toRightOf="@+id/thumbnail"
-        android:text="title"
-        android:textColor="#040404"
-        android:textSize="18dp"
-        android:typeface="sans" />
-
-    <TextView
-        android:id="@+id/list_row_description"
-        android:layout_width="500dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="26dp"
-        android:layout_marginLeft="26dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="26dp"
-        android:layout_marginBottom="26dp"
-        android:layout_toRightOf="@+id/thumbnail"
-        android:hint="descripcion"
+        android:hint="Categoría"
         android:textColor="#040404"
         android:textSize="14sp"
         android:typeface="sans" />
 
     <TextView
-        android:id="@+id/list_row_description1"
-        android:layout_width="500dp"
+        android:id="@+id/list_row_titulo"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="26dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="85dp"
+        android:layout_marginLeft="26dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="26dp"
         android:layout_marginBottom="26dp"
         android:layout_toRightOf="@+id/thumbnail"
-        android:hint="descripcion"
+        android:hint="Título"
         android:textColor="#040404"
         android:textSize="14sp"
         android:typeface="sans" />
 
     <TextView
-        android:id="@+id/list_row_description2"
-        android:layout_width="500dp"
+        android:id="@+id/list_row_descripcion"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="26dp"
-        android:layout_marginLeft="31dp"
-        android:layout_marginTop="130dp"
+        android:layout_marginLeft="141dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="26dp"
         android:layout_marginBottom="26dp"
         android:layout_toRightOf="@+id/thumbnail"
-        android:hint="descripcion"
+        android:hint="Descripción"
         android:textColor="#040404"
         android:textSize="14sp"
         android:typeface="sans" />

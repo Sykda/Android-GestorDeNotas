@@ -2,7 +2,6 @@ package com.example.gestordenotas;
 
 import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -19,7 +18,7 @@ public class Registro extends AppCompatActivity {
 
     private Spinner spinner;
     private EditText et_categoria, et_titulo, et_descripcion;
-    private Button button;
+    private AdminSQLiteOpenHelper bbddAdministrador;
 
 
     @Override
@@ -27,9 +26,9 @@ public class Registro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
-        et_categoria=findViewById(R.id.categoria);
-        et_titulo=findViewById(R.id.titulo);
-        et_descripcion=findViewById(R.id.descripcion);
+        et_categoria = findViewById(R.id.categoria);
+        et_titulo = findViewById(R.id.titulo);
+        et_descripcion = findViewById(R.id.descripcion);
 
 
         //Spinner
@@ -63,22 +62,11 @@ public class Registro extends AppCompatActivity {
                 });
 
 
-
-
-    }
-
-    //Boton con el intent de los datos
-    public void enviarDatos(View view){
-
-        //Intent para pasar de pantalla
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-
     }
 
     //Metodo para registrar una nota
-    public void registrar(View view){
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"administracion", null, 1);
+    public void registrar(View view) {
+       /* AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "administracion", null, 1);
         SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
 
         String categoria = et_categoria.getText().toString();
@@ -86,7 +74,7 @@ public class Registro extends AppCompatActivity {
         String descripcion = et_descripcion.getText().toString();
 
 
-        if(!categoria.isEmpty() && !titulo.isEmpty() && !descripcion.isEmpty()){
+        if (!categoria.isEmpty() && !titulo.isEmpty() && !descripcion.isEmpty()) {
             ContentValues registro = new ContentValues();
             registro.put("categoria", categoria);
             registro.put("titulo", titulo);
@@ -101,12 +89,18 @@ public class Registro extends AppCompatActivity {
 
             Toast.makeText(this, "Se ha registrado correctamente", Toast.LENGTH_SHORT).show();
 
-        }else{
+        } else {
             Toast.makeText(this, "Debes rellenar todos los campos", Toast.LENGTH_SHORT).show();
+        }*/
 
-        }
+        bbddAdministrador.bbddInsert(this, et_categoria,et_titulo,et_descripcion);
+
+        //Intent para volver
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
 
     }
+
 /*
     //Metodo para modificar un producto o artículo
     public void modificar(View view){
