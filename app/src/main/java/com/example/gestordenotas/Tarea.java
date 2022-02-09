@@ -1,5 +1,6 @@
 package com.example.gestordenotas;
 
+//Esta clase incluye los getter y setter para sacar la informacion de cada objeto de la bbdd
 public class Tarea {
 
     private int id;

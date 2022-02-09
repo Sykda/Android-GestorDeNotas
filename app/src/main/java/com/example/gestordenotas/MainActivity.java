@@ -25,18 +25,13 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> listaStrings;
     private AdminSQLiteOpenHelper bbddAdministrador;
     private ListViewAdapter adaptadorDeLista;
-    private Registro registro;
     private Tarea tarea;
-
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //Instancias
-        registro = new Registro();
 
         //Referencias
         button = findViewById(R.id.floatingActionButton);
@@ -86,20 +81,22 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Método para ir a la pantalla del registro
     public void registro(View view) {
         //Intent para pasar de pantalla
         Intent intent = new Intent(this, Registro.class);
         startActivity(intent);
     }
 
+    //Método para borrar un elemento de la bbdd y de la lista. Usa "fragment"
     private void removeItem(final int position) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.confirm);
-        builder.setMessage(String.format("¿Quieres borrar '%s'?", listaTareas.get(position).getTitulo()));
+        builder.setMessage("¿Quieres borrar esta nota?");
         builder.setPositiveButton(R.string.remove, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                bbddAdministrador.bbddDelete(getApplicationContext(),listaTareas.get(position).getId());
+                bbddAdministrador.bbddDelete(getApplicationContext(), listaTareas.get(position).getId());
                 listaStrings.remove(position);
                 adaptadorDeLista.notifyDataSetChanged();//Se notifica al adaptador los cambios
             }

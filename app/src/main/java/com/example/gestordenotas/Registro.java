@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -18,14 +17,13 @@ public class Registro extends AppCompatActivity {
 
     private Spinner spinner;
     private EditText et_categoria, et_titulo, et_descripcion;
-    private AdminSQLiteOpenHelper bbddAdministrador;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
+        //Referencias
         et_categoria = findViewById(R.id.categoria);
         et_titulo = findViewById(R.id.titulo);
         et_descripcion = findViewById(R.id.descripcion);
@@ -66,8 +64,8 @@ public class Registro extends AppCompatActivity {
 
     //Metodo para registrar una nota
     public void registrar(View view) {
-       /* AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "administracion", null, 1);
-        SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
+        AdminSQLiteOpenHelper bbddAdministrador = new AdminSQLiteOpenHelper(this, "administracion", null, 1);
+        SQLiteDatabase bbdd = bbddAdministrador.getWritableDatabase();
 
         String categoria = et_categoria.getText().toString();
         String titulo = et_titulo.getText().toString();
@@ -80,28 +78,22 @@ public class Registro extends AppCompatActivity {
             registro.put("titulo", titulo);
             registro.put("descripcion", descripcion);
 
-            BaseDeDatos.insert("notas", null, registro);
+            bbdd.insert("notas", null, registro);
 
-            BaseDeDatos.close();
+            bbdd.close();
             et_categoria.setText("");
             et_titulo.setText("");
             et_descripcion.setText("");
 
             Toast.makeText(this, "Se ha registrado correctamente", Toast.LENGTH_SHORT).show();
 
+            //Intent para volver
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+
         } else {
             Toast.makeText(this, "Debes rellenar todos los campos", Toast.LENGTH_SHORT).show();
-        }*/
-
-        bbddAdministrador.bbddInsert(this, et_categoria.getText().toString(),et_titulo.getText().toString(),et_descripcion.getText().toString());
-        et_categoria.setText("");
-        et_titulo.setText("");
-        et_descripcion.setText("");
-
-        //Intent para volver
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-
+        }
     }
 
 /*
