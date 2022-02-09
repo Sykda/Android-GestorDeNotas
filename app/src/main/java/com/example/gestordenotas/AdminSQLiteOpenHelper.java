@@ -40,17 +40,11 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
        }
    }
 
-   public void bbddInsert(Context context, EditText et_categoria, EditText et_titulo, EditText et_descripcion){
+   public void bbddInsert(Context context, String categoria, String titulo, String descripcion){
        bbddAdministrador = new AdminSQLiteOpenHelper(context, "administracion", null, 1);
        SQLiteDatabase BaseDeDatos = bbddAdministrador.getWritableDatabase();
 
-       et_categoria = et_categoria.findViewById(R.id.categoria);
-       et_titulo = et_titulo.findViewById(R.id.titulo);
-       et_descripcion = et_descripcion.findViewById(R.id.descripcion);
 
-       String categoria = et_categoria.getText().toString();
-       String titulo = et_titulo.getText().toString();
-       String descripcion = et_descripcion.getText().toString();
 
        if (!categoria.isEmpty() && !titulo.isEmpty() && !descripcion.isEmpty()) {
            ContentValues registro = new ContentValues();
@@ -61,9 +55,6 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
            BaseDeDatos.insert("notas", null, registro);
 
            BaseDeDatos.close();
-           et_categoria.setText("");
-           et_titulo.setText("");
-           et_descripcion.setText("");
 
            Toast.makeText(context, "Se ha registrado correctamente", Toast.LENGTH_SHORT).show();
 

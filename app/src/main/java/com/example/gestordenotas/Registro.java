@@ -93,7 +93,10 @@ public class Registro extends AppCompatActivity {
             Toast.makeText(this, "Debes rellenar todos los campos", Toast.LENGTH_SHORT).show();
         }*/
 
-        bbddAdministrador.bbddInsert(this, et_categoria,et_titulo,et_descripcion);
+        bbddAdministrador.bbddInsert(this, et_categoria.getText().toString(),et_titulo.getText().toString(),et_descripcion.getText().toString());
+        et_categoria.setText("");
+        et_titulo.setText("");
+        et_descripcion.setText("");
 
         //Intent para volver
         Intent intent = new Intent(this, MainActivity.class);
