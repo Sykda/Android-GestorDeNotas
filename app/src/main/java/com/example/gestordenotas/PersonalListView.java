@@ -7,19 +7,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class PersonalListView extends AppCompatActivity {
 
-    private FloatingActionButton button;
-    private ListView lista;
+    private android.widget.ListView lista;
     private int[] iconos;
     private ArrayList<Tarea> listaTareas;
     private ArrayList<String> listaStrings;
@@ -27,14 +23,12 @@ public class MainActivity extends AppCompatActivity {
     private ListViewAdapter adaptadorDeLista;
     private Tarea tarea;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_listview);
 
         //Referencias
-        button = findViewById(R.id.floatingActionButton);
         lista = findViewById(R.id.listview);
 
         //Generamos la instancia de la base de datos
@@ -57,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void consultarListaNotas() {
+    public void consultarListaNotas() {
 
         SQLiteDatabase db = bbddAdministrador.getReadableDatabase();
         listaTareas = new ArrayList<Tarea>();
@@ -74,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Metodo para pasar los paramentros a una lista de String
-    private void obtenerLista() {
+    public void obtenerLista() {
         listaStrings = new ArrayList<String>();
         for (int i = 0; i < listaTareas.size(); i++) {
             listaStrings.add(listaTareas.get(i).getCategoria() + "," + listaTareas.get(i).getTitulo() + "," + listaTareas.get(i).getDescripcion());
@@ -89,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Método para borrar un elemento de la bbdd y de la lista. Usa "fragment"
-    private void removeItem(final int position) {
+    public void removeItem(final int position) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.confirm);
         builder.setMessage("¿Quieres borrar esta nota?");
@@ -104,6 +98,13 @@ public class MainActivity extends AppCompatActivity {
 
         builder.setNegativeButton(android.R.string.cancel, null);
         builder.create().show();
+    }
+
+    //Método para cambiar de vista
+    public void cambiaVista(View view) {
+        //Intent para pasar de pantalla
+        Intent intent = new Intent(this, PersonalGridView.class);
+        startActivity(intent);
     }
 
 

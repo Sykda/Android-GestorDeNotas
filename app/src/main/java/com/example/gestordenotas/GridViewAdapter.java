@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class ListViewAdapter extends BaseAdapter {
+public class GridViewAdapter extends BaseAdapter {
 
     // Variables
     Context context;
@@ -18,7 +18,7 @@ public class ListViewAdapter extends BaseAdapter {
     int[] imagenes;
     LayoutInflater inflater;
 
-    public ListViewAdapter(Context context, ArrayList<String> tareas, int[] imagenes) {
+    public GridViewAdapter(Context context, ArrayList<String> tareas, int[] imagenes) {
         this.context = context;
         this.tareas = tareas;
         this.imagenes = imagenes;
@@ -31,12 +31,12 @@ public class ListViewAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return tareas.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
@@ -50,7 +50,7 @@ public class ListViewAdapter extends BaseAdapter {
 
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View itemView = inflater.inflate(R.layout.vista_listview, parent, false);
+        View itemView = inflater.inflate(R.layout.vista_gridview, parent, false);
 
         // Localizamos los TextViews en el listview_item.xml
         categoria = (TextView) itemView.findViewById(R.id.list_row_categoria);
@@ -69,6 +69,5 @@ public class ListViewAdapter extends BaseAdapter {
 
         return itemView;
     }
-
 
 }

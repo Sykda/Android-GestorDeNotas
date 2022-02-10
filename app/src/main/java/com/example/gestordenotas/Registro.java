@@ -47,10 +47,13 @@ public class Registro extends AppCompatActivity {
                         String select = spinner.getSelectedItem().toString();
 
                         if (select.equals("Aviso")) {
+                            et_categoria.setText("Aviso");
 
                         } else if (select.equals("Reunion")) {
+                            et_categoria.setText("Reunion");
 
                         } else if (select.equals("Varios")) {
+                            et_categoria.setText("Varios");
 
                         }
                     }
@@ -88,43 +91,11 @@ public class Registro extends AppCompatActivity {
             Toast.makeText(this, "Se ha registrado correctamente", Toast.LENGTH_SHORT).show();
 
             //Intent para volver
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, PersonalListView.class);
             startActivity(intent);
 
         } else {
             Toast.makeText(this, "Debes rellenar todos los campos", Toast.LENGTH_SHORT).show();
         }
     }
-
-/*
-    //Metodo para modificar un producto o artículo
-    public void modificar(View view){
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "administracion", null, 1);
-        SQLiteDatabase BaseDeDatos=admin.getWritableDatabase();
-
-        String codigo = et_codigo.getText().toString();
-        String descripcion = et_descripcion.getText().toString();
-        String precio = et_precio.getText().toString();
-
-        if(!codigo.isEmpty() && !descripcion.isEmpty() && !precio.isEmpty()){
-            ContentValues registro = new ContentValues();
-            registro.put("codigo", codigo);
-            registro.put("descripcion", descripcion);
-            registro.put("precio", precio);
-
-            int cantidad=BaseDeDatos.update("articulos",registro,"codigo="+codigo,null);
-            BaseDeDatos.close();
-
-            if(cantidad==1){
-                Toast.makeText(this, "Artículo modificado", Toast.LENGTH_SHORT).show();
-            }else{
-                Toast.makeText(this, "El artículo no existe", Toast.LENGTH_SHORT).show();
-            }
-
-        }else{
-            Toast.makeText(this, "Debes rellenar todos los campos", Toast.LENGTH_SHORT).show();
-
-        }
-    }
-*/
 }

@@ -5,16 +5,19 @@
     android:id="@+id/floatingButton"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".PersonalGridView">
 
-    <ListView
-        android:id="@+id/listview"
+    <GridView
+        android:id="@+id/my_gridView"
         android:layout_width="match_parent"
-        android:layout_height="503dp"
+        android:layout_height="450dp"
+        android:numColumns="auto_fit"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
@@ -26,6 +29,22 @@
         android:onClick="registro"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:srcCompat="@android:drawable/ic_input_add"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="64dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:onClick="cambiaVista"
+        android:src="@android:drawable/ic_menu_view"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
