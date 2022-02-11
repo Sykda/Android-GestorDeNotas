@@ -37,7 +37,7 @@ public class Registro extends AppCompatActivity {
         spinner = findViewById(R.id.spinner);
         String[] opciones = {"Aviso", "Reunion", "Varios"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>
-                (this, android.R.layout.simple_spinner_item, opciones);
+                (this, R.layout.spinner_layout, opciones);
         spinner.setAdapter(adapter);
 
         //Lo que pasa cuando seleccionas algo del spinner
