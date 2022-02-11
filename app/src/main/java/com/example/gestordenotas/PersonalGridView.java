@@ -1,5 +1,6 @@
 package com.example.gestordenotas;
 
+import android.app.ActivityOptions;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -107,6 +108,7 @@ public class PersonalGridView extends AppCompatActivity {
     public void cambiaVista(View view) {
         //Intent para pasar de pantalla
         Intent intent = new Intent(this, PersonalListView.class);
-        startActivity(intent);
+        startActivity(intent,
+                ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
     }
 }
