@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,6 +25,7 @@ public class Registro extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//Boton "<-"
 
         //Referencias
         et_categoria = findViewById(R.id.categoria);
@@ -65,8 +68,6 @@ public class Registro extends AppCompatActivity {
                     public void onNothingSelected(AdapterView<?> spn) {
                     }
                 });
-
-
     }
 
     //Metodo para registrar una nota
@@ -103,4 +104,19 @@ public class Registro extends AppCompatActivity {
             Toast.makeText(this, "Debes rellenar todos los campos", Toast.LENGTH_SHORT).show();
         }
     }
+
+    //Boton "<-"
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: //hago un case por si en un futuro agrego mas opciones
+                Log.i("ActionBar", "Atrás!");
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
 }
