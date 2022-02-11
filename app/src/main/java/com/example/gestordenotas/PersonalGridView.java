@@ -87,7 +87,7 @@ public class PersonalGridView extends AppCompatActivity {
     }
 
     //Método para borrar un elemento de la bbdd y de la lista. Usa "fragment"
-    private void removeItem(final int position) {
+    public void removeItem(final int position) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.confirm);
         builder.setMessage("¿Quieres borrar esta nota?");

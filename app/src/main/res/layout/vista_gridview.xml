@@ -5,7 +5,8 @@
     android:orientation="horizontal">
 
     <!--  listrow  -->
-    <GridLayout android:id="@+id/thumbnail"
+    <GridLayout
+        android:id="@+id/thumbnail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
