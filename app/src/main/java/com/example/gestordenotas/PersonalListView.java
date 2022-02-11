@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class PersonalListView extends AppCompatActivity {
 
     private android.widget.ListView lista;
-    private int[] iconos;
+    private int[] iconos={R.drawable.hourglass};
     private ArrayList<Tarea> listaTareas;
     private ArrayList<String> listaStrings;
     private AdminSQLiteOpenHelper bbddAdministrador;

@@ -31,12 +31,12 @@ public class ListViewAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return tareas.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
@@ -65,7 +65,7 @@ public class ListViewAdapter extends BaseAdapter {
         categoria.setText(tareas.get(position).split(",")[1]);
         descripcion.setText(tareas.get(position).split(",")[2]);
 
-//        imgImg.setImageResource(imagenes[position]);
+        imgImg.setImageResource(imagenes[0]);
 
         return itemView;
     }
