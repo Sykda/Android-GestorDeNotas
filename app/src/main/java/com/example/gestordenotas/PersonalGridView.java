@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class PersonalGridView extends AppCompatActivity {
 
     private GridView gridView;
-    private int[] iconos;
+    private int[] iconos={R.mipmap.hourglass, R.mipmap.calendar, R.mipmap.warning};
     private ArrayList<Tarea> listaTareas;
     private ArrayList<String> listaStrings;
     private AdminSQLiteOpenHelper bbddAdministrador;
