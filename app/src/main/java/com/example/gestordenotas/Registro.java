@@ -18,8 +18,9 @@ import androidx.appcompat.app.AppCompatActivity;
 public class Registro extends AppCompatActivity {
 
     private Spinner spinner;
-    private EditText et_categoria, et_titulo, et_descripcion;
+    private EditText et_titulo, et_descripcion;
     private int imagen;
+    private String categoria;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,6 @@ public class Registro extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//Boton "<-"
 
         //Referencias
-        et_categoria = findViewById(R.id.categoria);
         et_titulo = findViewById(R.id.titulo);
         et_descripcion = findViewById(R.id.descripcion);
 
@@ -51,15 +51,18 @@ public class Registro extends AppCompatActivity {
                         String select = spinner.getSelectedItem().toString();
 
                         if (select.equals("Aviso")) {
-                            et_categoria.setText("Aviso");
+
+                            categoria="Aviso";
                             imagen=0;
 
                         } else if (select.equals("Reunion")) {
-                            et_categoria.setText("Reunion");
+
+                            categoria="Reunion";
                             imagen=1;
 
                         } else if (select.equals("Varios")) {
-                            et_categoria.setText("Varios");
+
+                            categoria="Varios";
                             imagen=2;
 
                         }
@@ -75,12 +78,12 @@ public class Registro extends AppCompatActivity {
         AdminSQLiteOpenHelper bbddAdministrador = new AdminSQLiteOpenHelper(this, "administracion", null, 1);
         SQLiteDatabase bbdd = bbddAdministrador.getWritableDatabase();
 
-        String categoria = et_categoria.getText().toString();
+        //String categoria;
         String titulo = et_titulo.getText().toString();
         String descripcion = et_descripcion.getText().toString();
 
 
-        if (!categoria.isEmpty() && !titulo.isEmpty() && !descripcion.isEmpty()) {
+        if (!titulo.isEmpty() && !descripcion.isEmpty()) {
             ContentValues registro = new ContentValues();
             registro.put("categoria", categoria);
             registro.put("titulo", titulo);
@@ -90,7 +93,6 @@ public class Registro extends AppCompatActivity {
             bbdd.insert("notas", null, registro);
 
             bbdd.close();
-            et_categoria.setText("");
             et_titulo.setText("");
             et_descripcion.setText("");
 
