@@ -65,7 +65,7 @@ public class ListViewAdapter extends BaseAdapter {
         categoria.setText(tareas.get(position).split(",")[1]);
         descripcion.setText(tareas.get(position).split(",")[2]);
 
-        imgImg.setImageResource(imagenes[0]);
+        imgImg.setImageResource(imagenes[position]);
 
         return itemView;
     }

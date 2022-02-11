@@ -3,14 +3,15 @@ package com.example.gestordenotas;
 //Esta clase incluye los getter y setter para sacar la informacion de cada objeto de la bbdd
 public class Tarea {
 
-    private int id;
+    private int id, imagen;
     private String titulo, categoria, descripcion;
 
-    public Tarea(int id, String titulo, String categoria, String descripcion) {
+    public Tarea(int id, String titulo, String categoria, String descripcion, int imagen) {
         this.id = id;
         this.titulo = titulo;
         this.categoria = categoria;
         this.descripcion = descripcion;
+        this.imagen=imagen;
     }
 
     public Tarea() {
@@ -46,5 +47,13 @@ public class Tarea {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public int getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(int imagen) {
+        this.imagen = imagen;
     }
 }

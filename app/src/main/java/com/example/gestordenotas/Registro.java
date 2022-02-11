@@ -17,6 +17,7 @@ public class Registro extends AppCompatActivity {
 
     private Spinner spinner;
     private EditText et_categoria, et_titulo, et_descripcion;
+    private int imagen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +49,15 @@ public class Registro extends AppCompatActivity {
 
                         if (select.equals("Aviso")) {
                             et_categoria.setText("Aviso");
+                            imagen=0;
 
                         } else if (select.equals("Reunion")) {
                             et_categoria.setText("Reunion");
+                            imagen=1;
 
                         } else if (select.equals("Varios")) {
                             et_categoria.setText("Varios");
+                            imagen=2;
 
                         }
                     }
@@ -80,6 +84,7 @@ public class Registro extends AppCompatActivity {
             registro.put("categoria", categoria);
             registro.put("titulo", titulo);
             registro.put("descripcion", descripcion);
+            registro.put("imagen", imagen);
 
             bbdd.insert("notas", null, registro);
 

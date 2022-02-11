@@ -65,17 +65,17 @@ public class PersonalGridView extends AppCompatActivity {
         while (cursor.moveToNext()) {
 
             //Seteamos con un constructor todos los parámetros
-            tarea = new Tarea(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3));
+            tarea = new Tarea(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getInt(4));
             listaTareas.add(tarea);
         }
         obtenerLista();
     }
 
     //Metodo para pasar los paramentros a una lista de String
-    private void obtenerLista() {
+    public void obtenerLista() {
         listaStrings = new ArrayList<String>();
         for (int i = 0; i < listaTareas.size(); i++) {
-            listaStrings.add(listaTareas.get(i).getCategoria() + "," + listaTareas.get(i).getTitulo() + "," + listaTareas.get(i).getDescripcion());
+            listaStrings.add(listaTareas.get(i).getCategoria() + "," + listaTareas.get(i).getTitulo() + "," + listaTareas.get(i).getDescripcion()+","+ listaTareas.get(i).getImagen());
         }
     }
 

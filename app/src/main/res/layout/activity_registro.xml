@@ -18,7 +18,8 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titulo"
-        app:layout_constraintVertical_bias="0.041" />
+        app:layout_constraintVertical_bias="0.041"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <Spinner
         android:id="@+id/spinner"
@@ -27,7 +28,8 @@
         android:layout_marginTop="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/titulo"
@@ -41,7 +43,8 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner"
-        app:layout_constraintVertical_bias="0.042" />
+        app:layout_constraintVertical_bias="0.042"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/button"
@@ -65,6 +68,8 @@
         android:text="Name"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="1dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
