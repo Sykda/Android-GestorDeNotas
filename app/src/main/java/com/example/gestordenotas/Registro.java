@@ -52,18 +52,18 @@ public class Registro extends AppCompatActivity {
 
                         if (select.equals("Aviso")) {
 
-                            categoria="Aviso";
-                            imagen=0;
+                            categoria = "Aviso";
+                            imagen = 0;
 
                         } else if (select.equals("Reunion")) {
 
-                            categoria="Reunion";
-                            imagen=1;
+                            categoria = "Reunion";
+                            imagen = 1;
 
                         } else if (select.equals("Varios")) {
 
-                            categoria="Varios";
-                            imagen=2;
+                            categoria = "Varios";
+                            imagen = 2;
 
                         }
                     }

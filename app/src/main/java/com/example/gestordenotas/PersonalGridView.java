@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class PersonalGridView extends AppCompatActivity {
 
     private GridView gridView;
-    private int[] iconos={R.mipmap.hourglass, R.mipmap.calendar, R.mipmap.warning};
+    private final int[] iconos = {R.mipmap.hourglass, R.mipmap.calendar, R.mipmap.warning};
     private ArrayList<Tarea> listaTareas;
     private ArrayList<String> listaStrings;
     private AdminSQLiteOpenHelper bbddAdministrador;
@@ -32,7 +32,7 @@ public class PersonalGridView extends AppCompatActivity {
         setContentView(R.layout.activity_grid_view);
 
         //Referencias
-        gridView = (GridView) findViewById(R.id.my_gridView);
+        gridView = findViewById(R.id.my_gridView);
 
         //Generamos la instancia de la base de datos
         bbddAdministrador = new AdminSQLiteOpenHelper(getApplicationContext(), "administracion", null, 1);
@@ -75,7 +75,7 @@ public class PersonalGridView extends AppCompatActivity {
     public void obtenerLista() {
         listaStrings = new ArrayList<String>();
         for (int i = 0; i < listaTareas.size(); i++) {
-            listaStrings.add(listaTareas.get(i).getCategoria() + "," + listaTareas.get(i).getTitulo() + "," + listaTareas.get(i).getDescripcion()+","+ listaTareas.get(i).getImagen());
+            listaStrings.add(listaTareas.get(i).getCategoria() + "," + listaTareas.get(i).getTitulo() + "," + listaTareas.get(i).getDescripcion() + "," + listaTareas.get(i).getImagen());
         }
     }
 
