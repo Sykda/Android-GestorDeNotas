@@ -99,8 +99,7 @@ public class Registro extends AppCompatActivity {
             Toast.makeText(this, "Se ha registrado correctamente", Toast.LENGTH_SHORT).show();
 
             //Intent para volver
-            Intent intent = new Intent(this, PersonalListView.class);
-            startActivity(intent);
+            startActivity(new Intent(this, PersonalListView.class));
 
         } else {
             Toast.makeText(this, "Debes rellenar todos los campos", Toast.LENGTH_SHORT).show();

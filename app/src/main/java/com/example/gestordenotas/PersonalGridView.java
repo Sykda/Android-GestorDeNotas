@@ -82,8 +82,7 @@ public class PersonalGridView extends AppCompatActivity {
     //Método para ir a la pantalla del registro
     public void registro(View view) {
         //Intent para pasar de pantalla
-        Intent intent = new Intent(this, Registro.class);
-        startActivity(intent);
+        startActivity(new Intent(this, Registro.class));
     }
 
     //Método para borrar un elemento de la bbdd y de la lista. Usa "fragment"
