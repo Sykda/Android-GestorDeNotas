@@ -27,7 +27,7 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
     public void bbddDelete(Context context, int id) {
         AdminSQLiteOpenHelper bbddAdministrador = new AdminSQLiteOpenHelper(context, "administracion", null, 1);
         SQLiteDatabase bbdd = bbddAdministrador.getWritableDatabase();
-        int cantidad = bbdd.delete("notas", "id ="+id, null);
+        int cantidad = bbdd.delete("notas", "id =" + id, null);
         bbdd.close();
         if (cantidad == 1) {
             Toast.makeText(context, "Artículo eliminado", Toast.LENGTH_SHORT).show();

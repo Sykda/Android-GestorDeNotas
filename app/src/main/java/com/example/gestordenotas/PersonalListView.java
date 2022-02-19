@@ -19,9 +19,10 @@ import java.util.ArrayList;
 
 public class PersonalListView extends AppCompatActivity {
 
-    private android.widget.ListView lista;
+
+    private android.widget.ListView listView;
     private final int[] iconos = {R.mipmap.hourglass, R.mipmap.calendar, R.mipmap.warning};
-    private ArrayList<Tarea> listaTareas;
+    public static ArrayList<Tarea> listaTareas;
     private ArrayList<String> listaStrings;
     private AdminSQLiteOpenHelper bbddAdministrador;
     private ListViewAdapter adaptadorDeLista;
@@ -33,7 +34,7 @@ public class PersonalListView extends AppCompatActivity {
         setContentView(R.layout.activity_listview);
 
         //Referencias
-        lista = findViewById(R.id.listview);
+        listView = findViewById(R.id.listview);
 
         //Generamos la instancia de la base de datos
         bbddAdministrador = new AdminSQLiteOpenHelper(getApplicationContext(), "administracion", null, 1);
@@ -43,17 +44,17 @@ public class PersonalListView extends AppCompatActivity {
 
         //Adaptador para meter el array en el listview
         adaptadorDeLista = new ListViewAdapter(this, listaStrings, iconos);
-        lista.setAdapter(adaptadorDeLista);
+        listView.setAdapter(adaptadorDeLista);
 
         //Selecciono lo que va a pasar con un click prolongado en el objeto
-        lista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> list, View view, int position, long id) {
                 removeItem(position);
                 return true;
             }
         });
-        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> list, View view, int position, long id) {
                 showDescription(position);
@@ -100,7 +101,7 @@ public class PersonalListView extends AppCompatActivity {
         builder.setPositiveButton(R.string.remove, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                bbddAdministrador.bbddDelete(getApplicationContext(),((Tarea) PersonalListView.this.listaTareas.get(position)).getId());
+                bbddAdministrador.bbddDelete(getApplicationContext(), ((Tarea) listaTareas.get(position)).getId());
                 listaStrings.remove(position);
                 adaptadorDeLista.notifyDataSetChanged();//Se notifica al adaptador los cambios
             }
@@ -143,6 +144,4 @@ public class PersonalListView extends AppCompatActivity {
         builder.setNegativeButton(android.R.string.cancel, null);
         builder.create().show();
     }
-
-
 }

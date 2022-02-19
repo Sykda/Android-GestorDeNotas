@@ -22,8 +22,6 @@ public class Registro extends AppCompatActivity {
     private int imagen;
     private String categoria;
 
-    int container;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

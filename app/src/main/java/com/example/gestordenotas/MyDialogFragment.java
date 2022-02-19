@@ -25,6 +25,8 @@ public class MyDialogFragment extends DialogFragment {
     private String categoria;
     private Button button;
     private AdminSQLiteOpenHelper bbddAdministrador;
+    private PersonalListView lv;
+    private Tarea tarea;
 
     static MyDialogFragment newInstance() {
 
@@ -89,7 +91,7 @@ public class MyDialogFragment extends DialogFragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bbddUpdate();
+                bbddUpdate(((Tarea) PersonalListView.listaTareas.get(position)).getId());
             }
         });
 
@@ -97,7 +99,7 @@ public class MyDialogFragment extends DialogFragment {
 
     }
 
-    public void bbddUpdate() {
+    public void bbddUpdate(int id) {
 
         bbddAdministrador = new AdminSQLiteOpenHelper(getContext(), "administracion", null, 1);
         SQLiteDatabase BaseDatabase = bbddAdministrador.getWritableDatabase();
@@ -112,7 +114,7 @@ public class MyDialogFragment extends DialogFragment {
             registro.put("descripcion", descripcion);
             registro.put("imagen", imagen);
 
-            BaseDatabase.update("notas", registro, "titulo= titulo", null);
+            BaseDatabase.update("notas", registro, "id= " + id, null);
             BaseDatabase.close();
 
             Toast.makeText(getContext(), "Artículo modificado", Toast.LENGTH_SHORT).show();

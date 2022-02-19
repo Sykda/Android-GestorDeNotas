@@ -12,6 +12,9 @@ import android.widget.GridView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 
@@ -50,6 +53,12 @@ public class PersonalGridView extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> list, View view, int position, long id) {
                 removeItem(position);
                 return true;
+            }
+        });
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> list, View view, int position, long id) {
+                showDescription(position);
             }
         });
 
@@ -93,7 +102,7 @@ public class PersonalGridView extends AppCompatActivity {
         builder.setPositiveButton(R.string.remove, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                bbddAdministrador.bbddDelete(getApplicationContext(),((Tarea) PersonalGridView.this.listaTareas.get(position)).getId());
+                bbddAdministrador.bbddDelete(getApplicationContext(), ((Tarea) listaTareas.get(position)).getId());
                 listaStrings.remove(position);
                 gridViewAdapter.notifyDataSetChanged();//Se notifica al adaptador los cambios
             }
@@ -109,5 +118,31 @@ public class PersonalGridView extends AppCompatActivity {
         Intent intent = new Intent(this, PersonalListView.class);
         startActivity(intent,
                 ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+    }
+
+    public void showDescription(final int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder
+                .setTitle("Descripción")
+                .setMessage(listaStrings.get(position).split(",")[2])
+                .setPositiveButton(R.string.update, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        //Creamos un FragmentManager y un FragmentTransaction para usar nuestro fragment personalizado
+                        FragmentManager fm = getSupportFragmentManager();
+                        FragmentTransaction ft = fm.beginTransaction();
+
+                        //Creamos una instancia del Fragment personalizado con un Bundle donde le pasamos argumentos
+                        Bundle argumentos = new Bundle();
+                        argumentos.putInt("position", position);
+                        DialogFragment newFragment = MyDialogFragment.newInstance();
+                        newFragment.setArguments(argumentos);
+                        newFragment.show(ft, "tag");
+                    }
+                });
+
+        builder.setNegativeButton(android.R.string.cancel, null);
+        builder.create().show();
     }
 }

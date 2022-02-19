@@ -56,4 +56,5 @@ public class Tarea {
     public void setImagen(int imagen) {
         this.imagen = imagen;
     }
+
 }
