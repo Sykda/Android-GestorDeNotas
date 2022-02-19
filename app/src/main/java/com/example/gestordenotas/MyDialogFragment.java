@@ -1,5 +1,6 @@
 package com.example.gestordenotas;
 
+import android.app.ActivityOptions;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -118,7 +119,7 @@ public class MyDialogFragment extends DialogFragment {
             BaseDatabase.close();
 
             Toast.makeText(getContext(), "Artículo modificado", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(getContext(), PersonalListView.class));
+            startActivity(new Intent(getContext(), PersonalListView.class), ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
 
         } else {
             Toast.makeText(getContext(), "Debes rellenar todos los campos", Toast.LENGTH_SHORT).show();
