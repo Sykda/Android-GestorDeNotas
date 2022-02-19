@@ -112,7 +112,7 @@ public class MyDialogFragment extends DialogFragment {
             registro.put("descripcion", descripcion);
             registro.put("imagen", imagen);
 
-            BaseDatabase.update("notas", registro, "id= notas.id", null);
+            BaseDatabase.update("notas", registro, "titulo= titulo", null);
             BaseDatabase.close();
 
             Toast.makeText(getContext(), "Artículo modificado", Toast.LENGTH_SHORT).show();
