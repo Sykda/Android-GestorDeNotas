@@ -55,15 +55,12 @@ public class GridViewAdapter extends BaseAdapter {
         // Localizamos los TextViews en vista_gridview.xml
         categoria = itemView.findViewById(R.id.list_row_categoria);
         titulo = itemView.findViewById(R.id.list_row_titulo);
-        descripcion = itemView.findViewById(R.id.list_row_descripcion);
-
-
         imgImg = itemView.findViewById(R.id.list_row_image);
 
         // Captura la posicion y seteamos los textView
         titulo.setText(tareas.get(position).split(",")[0]);
         categoria.setText(tareas.get(position).split(",")[1]);
-        descripcion.setText(tareas.get(position).split(",")[2]);
+
 
         imgImg.setImageResource(imagenes[Integer.parseInt(tareas.get(position).split(",")[3])]);
 

@@ -11,6 +11,9 @@ import android.widget.AdapterView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 
@@ -50,6 +53,13 @@ public class PersonalListView extends AppCompatActivity {
                 return true;
             }
         });
+        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> list, View view, int position, long id) {
+                showDescription(position);
+            }
+        });
+
     }
 
     public void consultarListaNotas() {
@@ -90,7 +100,7 @@ public class PersonalListView extends AppCompatActivity {
         builder.setPositiveButton(R.string.remove, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                bbddAdministrador.bbddDelete(getApplicationContext(), listaTareas.get(position).getId());
+                bbddAdministrador.bbddDelete(getApplicationContext());
                 listaStrings.remove(position);
                 adaptadorDeLista.notifyDataSetChanged();//Se notifica al adaptador los cambios
             }
@@ -106,6 +116,32 @@ public class PersonalListView extends AppCompatActivity {
         Intent intent = new Intent(this, PersonalGridView.class);
         startActivity(intent,
                 ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+    }
+
+    public void showDescription(final int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder
+                .setTitle("Descripción")
+                .setMessage(listaStrings.get(position).split(",")[2])
+                .setPositiveButton(R.string.update, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        //Creamos un FragmentManager y un FragmentTransaction para usar nuestro fragment personalizado
+                        FragmentManager fm = getSupportFragmentManager();
+                        FragmentTransaction ft = fm.beginTransaction();
+
+                        //Creamos una instancia del Fragment personalizado con un Bundle donde le pasamos argumentos
+                        Bundle argumentos = new Bundle();
+                        argumentos.putInt("position", position);
+                        DialogFragment newFragment = MyDialogFragment.newInstance();
+                        newFragment.setArguments(argumentos);
+                        newFragment.show(ft, "tag");
+                    }
+                });
+
+        builder.setNegativeButton(android.R.string.cancel, null);
+        builder.create().show();
     }
 
 

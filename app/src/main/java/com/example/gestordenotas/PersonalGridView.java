@@ -93,7 +93,7 @@ public class PersonalGridView extends AppCompatActivity {
         builder.setPositiveButton(R.string.remove, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                bbddAdministrador.bbddDelete(getApplicationContext(), listaTareas.get(position).getId());
+                bbddAdministrador.bbddDelete(getApplicationContext());
                 listaStrings.remove(position);
                 gridViewAdapter.notifyDataSetChanged();//Se notifica al adaptador los cambios
             }

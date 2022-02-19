@@ -24,10 +24,10 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
         db.execSQL("drop table notas");
     }
 
-    public void bbddDelete(Context context, int id) {
+    public void bbddDelete(Context context) {
         AdminSQLiteOpenHelper bbddAdministrador = new AdminSQLiteOpenHelper(context, "administracion", null, 1);
         SQLiteDatabase bbdd = bbddAdministrador.getWritableDatabase();
-        int cantidad = bbdd.delete("notas", "id=" + id, null);
+        int cantidad = bbdd.delete("notas", "id = notas.id", null);
         bbdd.close();
         if (cantidad == 1) {
             Toast.makeText(context, "Artículo eliminado", Toast.LENGTH_SHORT).show();
@@ -35,4 +35,5 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
             Toast.makeText(context, "Ha habido un error", Toast.LENGTH_SHORT).show();
         }
     }
+
 }
