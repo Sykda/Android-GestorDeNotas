@@ -26,32 +26,16 @@ public class Tarea {
         return categoria;
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-
     public String getTitulo() {
         return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
     }
 
     public String getDescripcion() {
         return descripcion;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     public int getImagen() {
         return imagen;
-    }
-
-    public void setImagen(int imagen) {
-        this.imagen = imagen;
     }
 
 }

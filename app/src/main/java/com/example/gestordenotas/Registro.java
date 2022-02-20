@@ -85,16 +85,14 @@ public class Registro extends AppCompatActivity {
 
         if (!titulo.isEmpty() && !descripcion.isEmpty()) {
             ContentValues registro = new ContentValues();
-            registro.put("categoria", categoria);
             registro.put("titulo", titulo);
+            registro.put("categoria", categoria);
             registro.put("descripcion", descripcion);
             registro.put("imagen", imagen);
 
             bbdd.insert("notas", null, registro);
 
             bbdd.close();
-            et_titulo.setText("");
-            et_descripcion.setText("");
 
             Toast.makeText(this, "Se ha registrado correctamente", Toast.LENGTH_SHORT).show();
 
