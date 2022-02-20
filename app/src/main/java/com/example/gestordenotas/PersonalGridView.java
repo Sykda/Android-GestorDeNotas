@@ -16,7 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class PersonalGridView extends AppCompatActivity {
 
-    private final Methods methods = Methods.getInstance();
+    private Methods methods = Methods.getInstance();
     private GridView gridView;
     private AdminSQLiteOpenHelper bbddAdministrador;
     private GridViewAdapter gridViewAdapter;
@@ -70,7 +70,7 @@ public class PersonalGridView extends AppCompatActivity {
         builder.setPositiveButton(R.string.remove, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                bbddAdministrador.bbddDelete(getApplicationContext(), (Methods.getListaTareas().get(position)).getId());
+                methods.bbddDelete(getApplicationContext(), (Methods.getListaTareas().get(position)).getId());
                 methods.getListaStrings().remove(position);
                 gridViewAdapter.notifyDataSetChanged();//Se notifica al adaptador los cambios
             }

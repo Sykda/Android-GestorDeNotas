@@ -3,16 +3,18 @@ package com.example.gestordenotas;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class Methods {
 
-    private static final Methods methods = new Methods();
-    public static ArrayList<Tarea> listaTareas;
-    private final int[] iconos = {R.mipmap.hourglass, R.mipmap.calendar, R.mipmap.warning};
-    private ArrayList<String> listaStrings;
     private Tarea tarea;
+    private static ArrayList<Tarea> listaTareas;
+    private static ArrayList<String> listaStrings;
+    private static int[] iconos = {R.mipmap.hourglass, R.mipmap.calendar, R.mipmap.warning};
+    private static final Methods methods = new Methods();
+
 
     public static Methods getInstance() {
         return methods;
@@ -33,7 +35,9 @@ public class Methods {
     public void consultarListaNotas(Context context) {
         AdminSQLiteOpenHelper bbddAdministrador = new AdminSQLiteOpenHelper(context, "administracion", null, 1);
         SQLiteDatabase db = bbddAdministrador.getReadableDatabase();
-        listaTareas = new ArrayList<Tarea>();
+
+        listaTareas = new ArrayList<>();
+        listaStrings = new ArrayList<>();
 
         Cursor cursor = db.rawQuery("SELECT * FROM notas", null);
 
@@ -43,9 +47,21 @@ public class Methods {
             tarea = new Tarea(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getInt(4));
             listaTareas.add(tarea);
         }
-        listaStrings = new ArrayList<String>();
+
         for (int i = 0; i < listaTareas.size(); i++) {
             listaStrings.add(listaTareas.get(i).getCategoria() + "," + listaTareas.get(i).getTitulo() + "," + listaTareas.get(i).getDescripcion() + "," + listaTareas.get(i).getImagen());
+        }
+    }
+
+    public void bbddDelete(Context context, int id) {
+        AdminSQLiteOpenHelper bbddAdministrador = new AdminSQLiteOpenHelper(context, "administracion", null, 1);
+        SQLiteDatabase bbdd = bbddAdministrador.getWritableDatabase();
+        int cantidad = bbdd.delete("notas", "id =" + id, null);
+        bbdd.close();
+        if (cantidad == 1) {
+            Toast.makeText(context, "Artículo eliminado", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Ha habido un error", Toast.LENGTH_SHORT).show();
         }
     }
 

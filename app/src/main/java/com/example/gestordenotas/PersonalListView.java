@@ -15,7 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class PersonalListView extends AppCompatActivity {
 
-    private final Methods methods = Methods.getInstance();
+    private Methods methods = Methods.getInstance();
     private android.widget.ListView listView;
     private AdminSQLiteOpenHelper bbddAdministrador;
     private ListViewAdapter adaptadorDeLista;
@@ -69,7 +69,7 @@ public class PersonalListView extends AppCompatActivity {
         builder.setPositiveButton(R.string.remove, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                bbddAdministrador.bbddDelete(getApplicationContext(), (Methods.getListaTareas().get(position)).getId());
+                methods.bbddDelete(getApplicationContext(), (Methods.getListaTareas().get(position)).getId());
                 methods.getListaStrings().remove(position);
                 adaptadorDeLista.notifyDataSetChanged();//Se notifica al adaptador los cambios
             }
