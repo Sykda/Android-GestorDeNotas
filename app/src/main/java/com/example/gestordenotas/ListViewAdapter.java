@@ -46,7 +46,6 @@ public class ListViewAdapter extends BaseAdapter {
         //Variables de texto e imagen
         TextView categoria;
         TextView titulo;
-        TextView descripcion;
         ImageView imgImg;
 
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -68,7 +67,4 @@ public class ListViewAdapter extends BaseAdapter {
         return itemView;
     }
 
-    public int getPosition() {
-        return Position;
-    }
 }

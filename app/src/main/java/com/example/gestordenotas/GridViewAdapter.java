@@ -45,7 +45,6 @@ public class GridViewAdapter extends BaseAdapter {
         //Variables de texto e imagen
         TextView categoria;
         TextView titulo;
-        TextView descripcion;
         ImageView imgImg;
 
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

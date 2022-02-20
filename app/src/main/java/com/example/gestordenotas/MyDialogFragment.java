@@ -20,14 +20,13 @@ import androidx.fragment.app.DialogFragment;
 
 public class MyDialogFragment extends DialogFragment {
 
+    private final Methods methods = Methods.getInstance();
     private Spinner spinner;
     private EditText et_titulo, et_descripcion;
     private int imagen;
     private String categoria;
     private Button button;
     private AdminSQLiteOpenHelper bbddAdministrador;
-    private PersonalListView lv;
-    private Tarea tarea;
 
     static MyDialogFragment newInstance() {
 
@@ -44,10 +43,9 @@ public class MyDialogFragment extends DialogFragment {
         et_titulo = view.findViewById(R.id.titulo);
         et_descripcion = view.findViewById(R.id.descripcion);
 
-        //Bundle que trae los objetos enviados desde los MainActivity1 y 2
+        //Bundle que trae los objetos enviados desde los Activity
         Bundle bundle = this.getArguments();
         int position = bundle.getInt("position", 0);
-
 
         //Spinner
         spinner = view.findViewById(R.id.spinner);
@@ -92,7 +90,7 @@ public class MyDialogFragment extends DialogFragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bbddUpdate(((Tarea) PersonalListView.listaTareas.get(position)).getId());
+                bbddUpdate((Methods.getListaTareas().get(position)).getId());
             }
         });
 
@@ -126,6 +124,5 @@ public class MyDialogFragment extends DialogFragment {
 
         }
     }
-
 
 }

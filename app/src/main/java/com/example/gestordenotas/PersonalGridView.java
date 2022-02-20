@@ -3,8 +3,6 @@ package com.example.gestordenotas;
 import android.app.ActivityOptions;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,18 +14,12 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import java.util.ArrayList;
-
 public class PersonalGridView extends AppCompatActivity {
 
+    private final Methods methods = Methods.getInstance();
     private GridView gridView;
-    private final int[] iconos = {R.mipmap.hourglass, R.mipmap.calendar, R.mipmap.warning};
-    private ArrayList<Tarea> listaTareas;
-    private ArrayList<String> listaStrings;
     private AdminSQLiteOpenHelper bbddAdministrador;
     private GridViewAdapter gridViewAdapter;
-    private Tarea tarea;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +33,10 @@ public class PersonalGridView extends AppCompatActivity {
         bbddAdministrador = new AdminSQLiteOpenHelper(getApplicationContext(), "administracion", null, 1);
 
         //Metodo para consultar la lista de notas
-        consultarListaNotas();
+        methods.consultarListaNotas(this);
 
         //Adaptador para meter el array en el listview
-        gridViewAdapter = new GridViewAdapter(this, listaStrings, iconos);
+        gridViewAdapter = new GridViewAdapter(this, methods.getListaStrings(), methods.getIconos());
         gridView.setAdapter(gridViewAdapter);
 
         //Selecciono lo que va a pasar con un click prolongado en el objeto
@@ -64,30 +56,6 @@ public class PersonalGridView extends AppCompatActivity {
 
     }
 
-    private void consultarListaNotas() {
-
-        SQLiteDatabase db = bbddAdministrador.getReadableDatabase();
-        listaTareas = new ArrayList<Tarea>();
-
-        Cursor cursor = db.rawQuery("SELECT * FROM notas", null);
-
-        while (cursor.moveToNext()) {
-
-            //Seteamos con un constructor todos los parámetros
-            tarea = new Tarea(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getInt(4));
-            listaTareas.add(tarea);
-        }
-        obtenerLista();
-    }
-
-    //Metodo para pasar los paramentros a una lista de String
-    public void obtenerLista() {
-        listaStrings = new ArrayList<String>();
-        for (int i = 0; i < listaTareas.size(); i++) {
-            listaStrings.add(listaTareas.get(i).getCategoria() + "," + listaTareas.get(i).getTitulo() + "," + listaTareas.get(i).getDescripcion() + "," + listaTareas.get(i).getImagen());
-        }
-    }
-
     //Método para ir a la pantalla del registro
     public void registro(View view) {
         //Intent para pasar de pantalla
@@ -102,8 +70,8 @@ public class PersonalGridView extends AppCompatActivity {
         builder.setPositiveButton(R.string.remove, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                bbddAdministrador.bbddDelete(getApplicationContext(), ((Tarea) listaTareas.get(position)).getId());
-                listaStrings.remove(position);
+                bbddAdministrador.bbddDelete(getApplicationContext(), (Methods.getListaTareas().get(position)).getId());
+                methods.getListaStrings().remove(position);
                 gridViewAdapter.notifyDataSetChanged();//Se notifica al adaptador los cambios
             }
         });
@@ -115,8 +83,7 @@ public class PersonalGridView extends AppCompatActivity {
     //Método para cambiar de vista
     public void cambiaVista(View view) {
         //Intent para pasar de pantalla
-        Intent intent = new Intent(this, PersonalListView.class);
-        startActivity(intent,
+        startActivity(new Intent(this, PersonalListView.class),
                 ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
     }
 
@@ -124,7 +91,7 @@ public class PersonalGridView extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder
                 .setTitle("Descripción")
-                .setMessage(listaStrings.get(position).split(",")[2])
+                .setMessage(methods.getListaStrings().get(position).split(",")[2])
                 .setPositiveButton(R.string.update, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -145,4 +112,5 @@ public class PersonalGridView extends AppCompatActivity {
         builder.setNegativeButton(android.R.string.cancel, null);
         builder.create().show();
     }
+
 }
