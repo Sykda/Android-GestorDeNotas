@@ -13,7 +13,7 @@ public class Methods {
     private static ArrayList<Tarea> listaTareas;
     private static ArrayList<String> listaStrings;
     private static int[] iconos = {R.mipmap.hourglass, R.mipmap.calendar, R.mipmap.warning};
-    private static final Methods methods = new Methods();
+    private static Methods methods = new Methods();
 
 
     public static Methods getInstance() {
