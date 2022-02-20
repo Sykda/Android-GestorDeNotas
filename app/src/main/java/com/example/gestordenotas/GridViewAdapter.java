@@ -14,11 +14,11 @@ public class GridViewAdapter extends BaseAdapter {
 
     // Variables
     Context context;
-    ArrayList<String> tareas;
+    ArrayList<Tarea> tareas;
     int[] imagenes;
     LayoutInflater inflater;
 
-    public GridViewAdapter(Context context, ArrayList<String> tareas, int[] imagenes) {
+    public GridViewAdapter(Context context, ArrayList<Tarea> tareas, int[] imagenes) {
         this.context = context;
         this.tareas = tareas;
         this.imagenes = imagenes;
@@ -57,12 +57,10 @@ public class GridViewAdapter extends BaseAdapter {
         imgImg = itemView.findViewById(R.id.list_row_image);
 
         // Captura la posicion y seteamos los textView
-        titulo.setText(tareas.get(position).split(",")[0]);
-        categoria.setText(tareas.get(position).split(",")[1]);
-
-        imgImg.setImageResource(imagenes[Integer.parseInt(tareas.get(position).split(",")[3])]);
+        titulo.setText(tareas.get(position).getTitulo());
+        categoria.setText(tareas.get(position).getCategoria());
+        imgImg.setImageResource(imagenes[tareas.get(position).getImagen()]);
 
         return itemView;
     }
-
 }

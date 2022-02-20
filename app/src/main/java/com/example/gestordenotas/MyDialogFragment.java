@@ -21,7 +21,6 @@ import androidx.fragment.app.DialogFragment;
 //Este fragment se usa para actualizar un registro.
 public class MyDialogFragment extends DialogFragment {
 
-    private final Methods methods = Methods.getInstance();
     private Spinner spinner;
     private EditText et_titulo, et_descripcion;
     private int imagen;
@@ -126,5 +125,4 @@ public class MyDialogFragment extends DialogFragment {
 
         }
     }
-
 }

@@ -9,12 +9,10 @@ import java.util.ArrayList;
 
 public class Methods {
 
-    private Tarea tarea;
+    private static final int[] iconos = {R.mipmap.hourglass, R.mipmap.calendar, R.mipmap.warning};
+    private static final Methods methods = new Methods();
     private static ArrayList<Tarea> listaTareas;
-    private static ArrayList<String> listaStrings;
-    private static int[] iconos = {R.mipmap.hourglass, R.mipmap.calendar, R.mipmap.warning};
-    private static Methods methods = new Methods();
-
+    private Tarea tarea;
 
     public static Methods getInstance() {
         return methods;
@@ -22,10 +20,6 @@ public class Methods {
 
     public static ArrayList<Tarea> getListaTareas() {
         return listaTareas;
-    }
-
-    public ArrayList<String> getListaStrings() {
-        return listaStrings;
     }
 
     public int[] getIconos() {
@@ -39,7 +33,6 @@ public class Methods {
         SQLiteDatabase db = bbddAdministrador.getReadableDatabase();
 
         listaTareas = new ArrayList<>();
-        listaStrings = new ArrayList<>();
 
         Cursor cursor = db.rawQuery("SELECT * FROM notas", null);
 
@@ -50,10 +43,6 @@ public class Methods {
             listaTareas.add(tarea);
         }
 
-        //Sacamos un array de strings para tratar mejor los datos.
-        for (int i = 0; i < listaTareas.size(); i++) {
-            listaStrings.add(listaTareas.get(i).getCategoria() + "," + listaTareas.get(i).getTitulo() + "," + listaTareas.get(i).getDescripcion() + "," + listaTareas.get(i).getImagen());
-        }
     }
 
     //Método para el borrado de bbdd.
@@ -69,5 +58,4 @@ public class Methods {
             Toast.makeText(context, "Ha habido un error", Toast.LENGTH_SHORT).show();
         }
     }
-
 }

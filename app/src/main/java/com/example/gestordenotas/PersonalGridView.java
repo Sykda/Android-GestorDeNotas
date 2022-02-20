@@ -16,9 +16,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class PersonalGridView extends AppCompatActivity {
 
-    private Methods methods = Methods.getInstance();
+    private final Methods methods = Methods.getInstance();
     private GridView gridView;
-    private AdminSQLiteOpenHelper bbddAdministrador;
     private GridViewAdapter gridViewAdapter;
 
     @Override
@@ -30,13 +29,13 @@ public class PersonalGridView extends AppCompatActivity {
         gridView = findViewById(R.id.my_gridView);
 
         //Generamos la instancia de la base de datos.
-        bbddAdministrador = new AdminSQLiteOpenHelper(getApplicationContext(), "administracion", null, 1);
+        new AdminSQLiteOpenHelper(getApplicationContext(), "administracion", null, 1);
 
         //Metodo para consultar la lista de notas.
         methods.consultarListaNotas(this);
 
         //Adaptador para meter el array en el gridview.
-        gridViewAdapter = new GridViewAdapter(this, methods.getListaStrings(), methods.getIconos());
+        gridViewAdapter = new GridViewAdapter(this, Methods.getListaTareas(), methods.getIconos());
         gridView.setAdapter(gridViewAdapter);
 
         //Selecciono lo que va a pasar con un click prolongado en el objeto.
@@ -55,7 +54,6 @@ public class PersonalGridView extends AppCompatActivity {
                 showDescription(position);
             }
         });
-
     }
 
     //Método para ir a la pantalla del registro
@@ -73,7 +71,7 @@ public class PersonalGridView extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 methods.bbddDelete(getApplicationContext(), (Methods.getListaTareas().get(position)).getId());
-                methods.getListaStrings().remove(position);
+                Methods.getListaTareas().remove(position);
                 gridViewAdapter.notifyDataSetChanged();//Se notifica al adaptador los cambios
             }
         });
@@ -87,7 +85,7 @@ public class PersonalGridView extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder
                 .setTitle("Descripción")
-                .setMessage(methods.getListaStrings().get(position).split(",")[2])
+                .setMessage(Methods.getListaTareas().get(position).getDescripcion())
                 .setPositiveButton(R.string.update, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -115,5 +113,4 @@ public class PersonalGridView extends AppCompatActivity {
         startActivity(new Intent(this, PersonalListView.class),
                 ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
     }
-
 }

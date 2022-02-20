@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ListView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,9 +16,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class PersonalListView extends AppCompatActivity {
 
-    private Methods methods = Methods.getInstance();
-    private android.widget.ListView listView;
-    private AdminSQLiteOpenHelper bbddAdministrador;
+    private final Methods methods = Methods.getInstance();
+    private ListView listView;
     private ListViewAdapter listViewAdapter;
 
     @Override
@@ -29,13 +29,13 @@ public class PersonalListView extends AppCompatActivity {
         listView = findViewById(R.id.my_listView);
 
         //Generamos la instancia de la base de datos.
-        bbddAdministrador = new AdminSQLiteOpenHelper(getApplicationContext(), "administracion", null, 1);
+        new AdminSQLiteOpenHelper(getApplicationContext(), "administracion", null, 1);
 
         //Metodo para consultar la lista de notas.
         methods.consultarListaNotas(this);
 
         //Adaptador para meter el array en el listview.
-        listViewAdapter = new ListViewAdapter(this, methods.getListaStrings(), methods.getIconos());
+        listViewAdapter = new ListViewAdapter(this, Methods.getListaTareas(), methods.getIconos());
         listView.setAdapter(listViewAdapter);
 
         //Selecciono lo que va a pasar con un click prolongado en el objeto.
@@ -72,7 +72,7 @@ public class PersonalListView extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 methods.bbddDelete(getApplicationContext(), (Methods.getListaTareas().get(position)).getId());
-                methods.getListaStrings().remove(position);
+                Methods.getListaTareas().remove(position);
                 listViewAdapter.notifyDataSetChanged();//Se notifica al adaptador los cambios
             }
         });
@@ -86,7 +86,7 @@ public class PersonalListView extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder
                 .setTitle("Descripción")
-                .setMessage(methods.getListaStrings().get(position).split(",")[2])
+                .setMessage(Methods.getListaTareas().get(position).getDescripcion())
                 .setPositiveButton(R.string.update, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -114,5 +114,4 @@ public class PersonalListView extends AppCompatActivity {
         startActivity(new Intent(this, PersonalGridView.class),
                 ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
     }
-
 }
