@@ -60,7 +60,6 @@ public class GridViewAdapter extends BaseAdapter {
         titulo.setText(tareas.get(position).split(",")[0]);
         categoria.setText(tareas.get(position).split(",")[1]);
 
-
         imgImg.setImageResource(imagenes[Integer.parseInt(tareas.get(position).split(",")[3])]);
 
         return itemView;

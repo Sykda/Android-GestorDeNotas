@@ -28,19 +28,19 @@ public class Registro extends AppCompatActivity {
         setContentView(R.layout.activity_registro);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//Boton "<-"
 
-        //Referencias
+        //Referencias.
         et_titulo = findViewById(R.id.titulo);
         et_descripcion = findViewById(R.id.descripcion);
 
 
-        //Spinner
+        //Spinner.
         spinner = findViewById(R.id.spinner);
         String[] opciones = {"Aviso", "Reunion", "Varios"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>
                 (this, R.layout.spinner_layout, opciones);
         spinner.setAdapter(adapter);
 
-        //Lo que pasa cuando seleccionas algo del spinner
+        //Lo que pasa cuando seleccionas algo del spinner.
         spinner.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
                     public void onItemSelected(AdapterView<?> spn,
@@ -73,7 +73,7 @@ public class Registro extends AppCompatActivity {
                 });
     }
 
-    //Metodo para registrar una nota
+    //Metodo para registrar una nota.
     public void registrar(View view) {
         AdminSQLiteOpenHelper bbddAdministrador = new AdminSQLiteOpenHelper(this, "administracion", null, 1);
         SQLiteDatabase bbdd = bbddAdministrador.getWritableDatabase();
@@ -106,7 +106,7 @@ public class Registro extends AppCompatActivity {
         }
     }
 
-    //Boton "<-"
+    //Boton "<-".
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

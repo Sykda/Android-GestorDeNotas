@@ -32,7 +32,9 @@ public class Methods {
         return iconos;
     }
 
+    //Método que consulta la bbdd
     public void consultarListaNotas(Context context) {
+
         AdminSQLiteOpenHelper bbddAdministrador = new AdminSQLiteOpenHelper(context, "administracion", null, 1);
         SQLiteDatabase db = bbddAdministrador.getReadableDatabase();
 
@@ -43,17 +45,20 @@ public class Methods {
 
         while (cursor.moveToNext()) {
 
-            //Seteamos con un constructor todos los parámetros
+            //Por cada objeto creamos una tarea con los parámetros de la bbdd.
             tarea = new Tarea(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getInt(4));
             listaTareas.add(tarea);
         }
 
+        //Sacamos un array de strings para tratar mejor los datos.
         for (int i = 0; i < listaTareas.size(); i++) {
             listaStrings.add(listaTareas.get(i).getCategoria() + "," + listaTareas.get(i).getTitulo() + "," + listaTareas.get(i).getDescripcion() + "," + listaTareas.get(i).getImagen());
         }
     }
 
+    //Método para el borrado de bbdd.
     public void bbddDelete(Context context, int id) {
+
         AdminSQLiteOpenHelper bbddAdministrador = new AdminSQLiteOpenHelper(context, "administracion", null, 1);
         SQLiteDatabase bbdd = bbddAdministrador.getWritableDatabase();
         int cantidad = bbdd.delete("notas", "id =" + id, null);

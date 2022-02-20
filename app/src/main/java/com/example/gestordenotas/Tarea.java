@@ -1,6 +1,6 @@
 package com.example.gestordenotas;
 
-//Esta clase incluye los getter y setter para sacar la informacion de cada objeto de la bbdd
+//Esta clase incluye los getter y setter para sacar la informacion de cada objeto de la bbdd.
 public class Tarea {
 
     private int id, imagen;
@@ -12,9 +12,6 @@ public class Tarea {
         this.categoria = categoria;
         this.descripcion = descripcion;
         this.imagen = imagen;
-    }
-
-    public Tarea() {
     }
 
     public int getId() {

@@ -18,6 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+//Este fragment se usa para actualizar un registro.
 public class MyDialogFragment extends DialogFragment {
 
     private final Methods methods = Methods.getInstance();
@@ -39,22 +40,22 @@ public class MyDialogFragment extends DialogFragment {
 
         View view = inflater.inflate(R.layout.fragment_layout, container, false);
 
-        //Referencias
+        //Referencias.
         et_titulo = view.findViewById(R.id.titulo);
         et_descripcion = view.findViewById(R.id.descripcion);
 
-        //Bundle que trae los objetos enviados desde los Activity
+        //Bundle que trae los objetos enviados desde los Activity.
         Bundle bundle = this.getArguments();
         int position = bundle.getInt("position", 0);
 
-        //Spinner
+        //Spinner.
         spinner = view.findViewById(R.id.spinner);
         String[] opciones = {"Aviso", "Reunion", "Varios"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>
                 (getContext(), R.layout.spinner_layout, opciones);
         spinner.setAdapter(adapter);
 
-        //Lo que pasa cuando seleccionas algo del spinner
+        //Lo que pasa cuando seleccionas algo del spinner.
         spinner.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
                     public void onItemSelected(AdapterView<?> spn,
@@ -98,6 +99,7 @@ public class MyDialogFragment extends DialogFragment {
 
     }
 
+    //Método para actualizar un registro.
     public void bbddUpdate(int id) {
 
         bbddAdministrador = new AdminSQLiteOpenHelper(getContext(), "administracion", null, 1);
