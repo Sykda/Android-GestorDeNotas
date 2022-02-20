@@ -26,7 +26,7 @@ public class PersonalListView extends AppCompatActivity {
         setContentView(R.layout.activity_listview);
 
         //Referencias.
-        listView = findViewById(R.id.listview);
+        listView = findViewById(R.id.my_listView);
 
         //Generamos la instancia de la base de datos.
         bbddAdministrador = new AdminSQLiteOpenHelper(getApplicationContext(), "administracion", null, 1);

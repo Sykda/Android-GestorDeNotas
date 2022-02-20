@@ -8,7 +8,7 @@
     tools:context=".PersonalListView">
 
     <ListView
-        android:id="@+id/listview"
+        android:id="@+id/my_listView"
         android:layout_width="match_parent"
         android:layout_height="503dp"
         app:layout_constraintEnd_toEndOf="parent"
