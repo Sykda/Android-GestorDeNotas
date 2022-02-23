@@ -18,7 +18,7 @@ public class PersonalGridView extends AppCompatActivity {
 
     private final Methods methods = Methods.getInstance();
     private GridView gridView;
-    private GridViewAdapter gridViewAdapter;
+    private Adapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +34,9 @@ public class PersonalGridView extends AppCompatActivity {
         //Metodo para consultar la lista de notas.
         methods.consultarListaNotas(this);
 
-        //Adaptador para meter el array en el gridview.
-        gridViewAdapter = new GridViewAdapter(this, Methods.getListaTareas(), methods.getIconos());
-        gridView.setAdapter(gridViewAdapter);
+        //Adaptador para meter el array en el listview.
+        adapter = new Adapter(this, Methods.getListaTareas(), methods.getIconos());
+        gridView.setAdapter(adapter);
 
         //Selecciono lo que va a pasar con un click prolongado en el objeto.
         gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -72,7 +72,7 @@ public class PersonalGridView extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 methods.bbddDelete(getApplicationContext(), (Methods.getListaTareas().get(position)).getId());
                 Methods.getListaTareas().remove(position);
-                gridViewAdapter.notifyDataSetChanged();//Se notifica al adaptador los cambios
+                adapter.notifyDataSetChanged();//Se notifica al adaptador los cambios
             }
         });
 

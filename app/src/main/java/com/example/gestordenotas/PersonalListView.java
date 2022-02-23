@@ -18,7 +18,7 @@ public class PersonalListView extends AppCompatActivity {
 
     private final Methods methods = Methods.getInstance();
     private ListView listView;
-    private ListViewAdapter listViewAdapter;
+    private Adapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +35,8 @@ public class PersonalListView extends AppCompatActivity {
         methods.consultarListaNotas(this);
 
         //Adaptador para meter el array en el listview.
-        listViewAdapter = new ListViewAdapter(this, Methods.getListaTareas(), methods.getIconos());
-        listView.setAdapter(listViewAdapter);
+        adapter = new Adapter(this, Methods.getListaTareas(), methods.getIconos());
+        listView.setAdapter(adapter);
 
         //Selecciono lo que va a pasar con un click prolongado en el objeto.
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -73,7 +73,7 @@ public class PersonalListView extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 methods.bbddDelete(getApplicationContext(), (Methods.getListaTareas().get(position)).getId());
                 Methods.getListaTareas().remove(position);
-                listViewAdapter.notifyDataSetChanged();//Se notifica al adaptador los cambios
+                adapter.notifyDataSetChanged();//Se notifica al adaptador los cambios
             }
         });
 

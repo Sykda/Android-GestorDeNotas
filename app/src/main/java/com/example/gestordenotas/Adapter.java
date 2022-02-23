@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class GridViewAdapter extends BaseAdapter {
+public class Adapter extends BaseAdapter {
 
     // Variables
     Context context;
@@ -18,7 +18,7 @@ public class GridViewAdapter extends BaseAdapter {
     int[] imagenes;
     LayoutInflater inflater;
 
-    public GridViewAdapter(Context context, ArrayList<Tarea> tareas, int[] imagenes) {
+    public Adapter(Context context, ArrayList<Tarea> tareas, int[] imagenes) {
         this.context = context;
         this.tareas = tareas;
         this.imagenes = imagenes;
@@ -44,7 +44,7 @@ public class GridViewAdapter extends BaseAdapter {
 
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View itemView = inflater.inflate(R.layout.vista_gridview, parent, false);
+        View itemView = inflater.inflate(R.layout.vista_listview, parent, false);
 
         // Localizamos los TextViews en vista_gridview.xml
         TextView titulo = itemView.findViewById(R.id.list_row_titulo);
